@@ -1,0 +1,59 @@
+.matches{
+    text-align:center;
+    color:white;
+}
+
+.test-img{
+    width: 70px;
+    height: 70px;
+    line-height:70px;
+    display:inline;
+    float:right;
+}
+
+.versus{
+    display:inline;
+    font-family: 'Montserrat'; font-size:20px;
+}
+
+.test-img-2{
+    width: 70px;
+    height: 70px;
+    line-height:70px;
+    display:inline;
+    float:left;
+}
+
+.home{
+    display:inline-block;
+    margin:3px;
+    font-family: 'Montserrat'; font-size:29px;
+    height:70px;
+    line-height:70px;
+    width:26%;
+    border: 1px solid(255,255,255,0.01);
+    border-radius:20px;
+}
+
+.away{
+    margin:3px;
+    display:inline-block;  
+    font-family: 'Montserrat'; font-size:29px;
+    height:70px;
+    line-height:70px;
+    width:26%;
+    border: 1px solid(255,255,255,0.01);
+    border-radius:20px;
+}
+
+h1{
+    text-align:center;
+    font-family: 'Montserrat'; font-size:50px;
+    color:white;
+}
+
+h2{
+    text-align:center;
+    font-family: 'Montserrat'; font-size: 40px;
+    color:white;
+}

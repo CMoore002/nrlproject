@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>NRL Match Prediction</title>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" >
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+<h1>NRL Match Prediction</h1>
+<h2>{{seasonNumber}} {{ roundNumber }}</h2>
+<body style ="background-color:#0E0E0F">
+    <div class="wrapper">
+    {% for event in dataList %}
+        <section class="matches">
+            {% if event.predictedMargin > 0 %}
+            <div class="home" style="background-color:#38a605">
+                    {{ event.homeTeam }} <img src="static/images/{{event.homeTeam}}.svg" class='test-img' />
+            </div>
+            {% else %}
+            <div class="home" style="background-color:#a60505">
+                {{ event.homeTeam }} <img src="static/images/{{event.homeTeam}}.svg" class='test-img' />
+            </div>
+            {% endif %}
+            <div class="versus">
+                vs
+            </div>
+            {% if event.predictedMargin < 0 %}
+            <div class="away" style="background-color:#38a605">
+                    {{ event.awayTeam }} <img src="static/images/{{event.awayTeam}}.svg" class='test-img-2' />
+            </div>
+            {% else %}
+            <div class="away" style="background-color:#a60505">
+                {{ event.awayTeam }} <img src="static/images/{{event.awayTeam}}.svg" class='test-img-2' />
+            </div>
+            {% endif %}
+        </section>
+    {% endfor %}
+    </div>
+</body>
+</html>
