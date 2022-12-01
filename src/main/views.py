@@ -107,12 +107,18 @@ def homeView(request,*args, **kwargs):
         #########################################################################################################
         ##Updating ELO
         for x in teamDict:
-            if x == 'Dolphins':
-                break
-            latestHomeGame = nrlData2.objects.filter(homeTeam=x).values('date').last()
-            latestHomeGame2 = latestHomeGame['date']
-            latestAwayGame = nrlData2.objects.filter(awayTeam=x).values('date').last()
-            latestAwayGame2 = latestAwayGame['date']
+            try:
+                latestHomeGame = nrlData2.objects.filter(homeTeam=x).values('date').last()
+                latestHomeGame2 = latestHomeGame['date']
+            except:
+                latestHomeGame2 = datetime.date(1,1,1)
+
+            try:
+                latestAwayGame = nrlData2.objects.filter(awayTeam=x).values('date').last()
+                latestAwayGame2 = latestAwayGame['date']
+            except:
+                latestAwayGame2 = datetime.date(1,1,1)
+
             if latestHomeGame2 > latestAwayGame2:
                 ##Do home game stuff
                 homeMargin = nrlData2.objects.values('margin').filter(date=latestHomeGame2).filter(homeTeam=x)[0]['margin']
@@ -120,7 +126,7 @@ def homeView(request,*args, **kwargs):
                 oldRatingAway = nrlData2.objects.values('awayELO').filter(date=latestHomeGame2).filter(homeTeam=x)[0]['awayELO']
                 teamDict[x] = oldRatingHome + ratingConstant(logValue/2)*(actualOutcome(homeMargin) 
                 - predictedOutcome(oldRatingHome, oldRatingAway))
-            else:
+            elif latestHomeGame2 < latestAwayGame2:
                 ##Do away game stuff
                 awayMargin = nrlData2.objects.values('margin').filter(date=latestAwayGame2).filter(awayTeam=x)[0]['margin']
                 oldRatingHome = nrlData2.objects.values('homeELO').filter(date=latestAwayGame2).filter(awayTeam=x)[0]['homeELO']
